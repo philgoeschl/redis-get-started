@@ -11,7 +11,7 @@ docker stop redis
 
 docker rm redis
 
-# run example.js
+# run example.js in console
 
 node example.js
 
