@@ -9,13 +9,17 @@ var client = redis.createClient({
     host : redisHost
 });
 
-client.auth(redisAuth, function(err, response) {
-    if(err){
-        throw err;
-    }
-});
+// client.auth(redisAuth, function(err, response) {
+//     if(err){
+//         throw err;
+//     }
+// });
 
+// How to store a key-value pair
+
+console.log('### Set some key-value');
 client.set('foo', 'bar');
+console.log('### Get the value with the key');
 client.get('foo', function(err,response){
     if(err) {
         throw err;
@@ -23,3 +27,23 @@ client.get('foo', function(err,response){
         console.log(response);
     }
 });
+
+// how to store a list in Redis
+
+const myList = 'nameOfList';
+
+client.lpush(myList, 'item B');
+
+client.lpush(myList, 'item B');
+
+client.lpush(myList, 'item C');
+
+client.lrange(myList, 0, 10, function(err,response){
+    if(err) {
+        throw err;
+    } else {
+        console.log(response);
+    }
+});
+
+client.del(myList);
