@@ -33,11 +33,10 @@ client.get('foo', function(err,response){
 const myList = 'nameOfList';
 
 client.lpush(myList, 'item B');
-
 client.lpush(myList, 'item B');
-
 client.lpush(myList, 'item C');
 
+// Get the stored list in Redis
 client.lrange(myList, 0, 10, function(err,response){
     if(err) {
         throw err;
@@ -46,4 +45,5 @@ client.lrange(myList, 0, 10, function(err,response){
     }
 });
 
+// Delete the list
 client.del(myList);
